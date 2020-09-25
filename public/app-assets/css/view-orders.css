@@ -1,0 +1,57 @@
+
+
+
+.order h3, .order p {
+	padding-left: 30px;
+	padding-top: 30px;
+}
+.order h3 span {
+	color: #ff5400;
+}
+.order p span{
+	color: blue;
+	border-bottom: 2px solid #e84c3d;
+}
+.create h3 {
+	color: green;
+}
+.create h4 {
+	padding-top: 30px;
+}
+.border {
+	border: 1px solid;
+	border-radius: 10px;
+}
+.my-card-0 {
+	height: 210px;
+}
+.my-card {
+	height: 210px;
+	overflow-y: scroll;
+}
+.h4-design-1{
+	color: #fff;
+	background-color: #16a085;
+	border-radius: 10px 10px 0px 0px;
+	padding: 10px;
+}
+.h4-design-2, .h4-design-3, .h4-design-4 {
+	color: #fff;
+	border-radius: 10px 10px 0px 0px;
+	padding: 10px;
+}
+.h4-design-2 {
+	background-color: #E05D6E;
+}
+.h4-design-3 {
+	background-color: #3f4e62;
+}
+.h4-design-4 {
+	background-color: #418bca;
+}
+.padding-bottom-30 {
+	padding-bottom: 30px;
+}
+.card-padding-20 {
+	padding: 0px 20px;
+}
