@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<head>
+	
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<html>
+<body>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<!-- <td width="33%" align="center" valign="top" style="font-family:Arial, Helvetica, sans-serif; font-size:2px; color:#ffffff;">.</td> -->
+    <td width="35%" align="center" valign="top">
+	<section style="/*background-image: url('header_bg.png');*/padding: 16px 30px 16px 50px;background-repeat: no-repeat;background-position: right;background-size: cover;">
+		<div> 
+			<h2 style="text-align:center; padding-right: 60px;">{{APP_NAME}}</h2>
+			<!-- <img src="eatzilla_logo.png" alt="Eatzilla Logo" style="width: 170px;"> -->
+		</div>
+		<div style="float: right;width: 35%;">
+			<p style="font-family: 'Source Sans Pro', sans-serif;font-size: 16px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.2;letter-spacing: 0.6px;color: #686868;text-align: center;"><span>Customer Name:</span><span> @if(!empty($data->Users)) {{$data->Users->name}} @else Guest User @endif</span></p>
+			<p style="font-family: 'Source Sans Pro', sans-serif;font-size: 16px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.2;letter-spacing: 0.6px;color: #686868;text-align: center;"><span>Delivery Boy Name:</span><span> @if(!empty($data->Deliverypartners)) {{$data->Deliverypartners->name}} @else - @endif</span></p>
+
+		</div>
+		<p style="font-family: 'Source Sans Pro', sans-serif;font-size: 16px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.2;letter-spacing: 0.6px;text-align: left;color: #686868;padding-top: 17px;"><span>Order Id:</span><span> {{$data->order_id}}</span></p>
+		<p style="font-family: 'Source Sans Pro', sans-serif;font-size: 16px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.2;letter-spacing: 0.6px;text-align: left;color: #686868;"><span>Date:</span><span> {{date('D, M d, Y',strtotime($data->ordered_time))}}</span></p>
+		
+	</section>
+	<!-- <table style="width: 100%;padding-top: 30px;">
+		<tr style="width: 88px;height: 35px;font-family: 'Maven Pro', sans-serif;font-size: 35px;font-weight: bold;font-style: normal;font-stretch: normal;line-height: 1.26;letter-spacing: 0.7px;text-align: left;color: #353535;">
+			<td style="padding-left: 40px;">Total</td>
+			<td style="float: right;padding-right: 100px;">$198.55</td>
+		</tr>
+	</table> -->
+	<div style="border: 1px solid #79636370;width: 690px;margin-left: 35px;margin-top: 16px;"></div>
+	<table style="width: 100%;padding-top: 30px;padding-left: 30px;">
+		<tbody>
+            @php $i=1; @endphp
+			@foreach($data->Requestdetail as $value)
+                <tr style="font-family: 'Source Sans Pro', sans-serif;font-size: 16px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.7;letter-spacing: 0.8px;text-align: left;color: #686868;">
+                    <td style="padding-left: 15px;">{{$i}}</td>
+                    <td>@if(!empty($value->Foodlist)) {{$value->Foodlist->name}} @else - @endif</td>
+                    <td style="font-family: DejaVu Sans; sans-serif;">@if(!empty($value->Foodlist)) {{DEFAULT_CURRENCY_SYMBOL}} {{$value->Foodlist->price}} @else - @endif</td>
+                </tr>
+			@php $i=$i+1; @endphp
+			@endforeach
+		</tbody>
+	</table>
+	<div style="border: 1px solid #79636370;width: 690px;margin-left: 35px;margin-top: 16px;"></div>
+	<table style="width: 100%;padding-top: 30px;padding-left: 30px;">
+		<tr style="font-family: 'Source Sans Pro', sans-serif;font-size: 16px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.7;letter-spacing: 0.8px;text-align: left;color: #686868;">
+			<td style="padding-left: 15px;">Subtotal</td>
+			<td style="padding-right: 130px;text-align:right;font-family: DejaVu Sans; sans-serif;">{{DEFAULT_CURRENCY_SYMBOL}} {{$data->item_total}}</td>
+		</tr>
+		<tr style="font-family: 'Source Sans Pro', sans-serif;font-size: 16px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.7;letter-spacing: 0.8px;text-align: left;color: #686868;">
+			<td style="padding-left: 15px;">Tax</td>
+			<td style="padding-right: 130px;text-align:right;font-family: DejaVu Sans; sans-serif;">{{DEFAULT_CURRENCY_SYMBOL}} {{$data->tax}}</td>
+		</tr>
+		<tr style="font-family: 'Source Sans Pro', sans-serif;font-size: 16px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.7;letter-spacing: 0.8px;text-align: left;color: #686868;">
+			<td style="padding-left: 15px;">Delivery Fee</td>
+			<td style="padding-right: 130px;text-align:right;font-family: DejaVu Sans; sans-serif;">{{DEFAULT_CURRENCY_SYMBOL}} {{$data->delivery_charge}}</td>
+		</tr>
+		<tr style="font-family: 'Source Sans Pro', sans-serif;font-size: 16px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.7;letter-spacing: 0.8px;text-align: left;color: #686868;">
+			<td style="padding-left: 15px;">Discount</td>
+			<td style="padding-right: 130px;text-align:right;font-family: DejaVu Sans; sans-serif;">{{DEFAULT_CURRENCY_SYMBOL}} {{$data->offer_discount}}</td>
+		</tr>
+	</table>
+	<div style="border: 1px solid #79636370;width: 690px;margin-left: 35px;margin-top: 16px;"></div>
+	<table style="width: 100%;padding-top: 30px;padding-left: 30px;">
+		<tr style="font-family: 'Source Sans Pro', sans-serif;font-size: 16px;font-weight: 700;font-style: normal;font-stretch: normal;line-height: 1.2;letter-spacing: 0.8px;text-align: left;color: #686868;">
+			<td style="padding-left: 15px;padding-bottom:30px;">Total</td>
+			<td style="padding-right: 130px;padding-bottom:30px;text-align:right;font-family: DejaVu Sans; sans-serif;">{{DEFAULT_CURRENCY_SYMBOL}} {{$data->bill_amount}}</td>
+		</tr>
+	</table>
+	<section style="background-color: #f7f7f7;">
+		
+		<table style="width: 100%;padding-top: 30px;padding-left: 30px;">
+			<tr>
+				<td style="padding-left: 15px;float:left;">
+					<p style="font-family: 'Source Sans Pro', sans-serif;font-size: 16px;font-weight: 600;font-style: normal;font-stretch: normal;line-height: 1.2;letter-spacing: 0.3px;text-align: left;color: #686868;">Pickup Location</p>
+				</td>
+				<td >
+					<p style="font-family: 'Source Sans Pro', sans-serif;font-size: 16px;font-weight: 600;font-style: normal;font-stretch: normal;line-height: 1.2;letter-spacing: 0.3px;color: #686868; float:right;padding-right:154px">Delivery Location</p>
+				</td>
+			</tr>
+			<tr>
+				<td style="padding-left: 15px;">
+					<p style="font-family: 'Source Sans Pro', sans-serif;font-size: 16px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.2;letter-spacing: 0.7px;text-align: left;">
+						<span style="font-weight: 600;color: #2a8c37;">@if(!empty($data->Restaurants)) {{$data->Restaurants->restaurant_name}}</span><br>
+						<span style="font-weight: normal;color: #686868;">
+						{{$data->Restaurants->address}} @endif
+					</span>
+					</p>
+				</td>
+				<td>
+					<p style="text-align:right;font-family: 'Source Sans Pro', sans-serif;font-size: 16px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.2;letter-spacing: 0.7px;text-align: left;padding-right: 5%;">
+						<span style="font-weight: 600;color: #2a8c37;">@if(!empty($data->Users)) {{$data->Users->name}} @endif</span><br>
+						<p style="width:200px;"><span style="font-weight: normal;color: #686868;">
+						{{$data->delivery_address}}</span></p>
+					</p>
+					
+				</td>
+			</tr>
+		</table>
+		<!-- <div style="border: 1px solid #79636370;width: 690px;margin-left: 35px;margin-top: 16px;"></div> -->
+		<!-- <table style="width: 100%;padding-left: 30px;">
+			<tr>
+				<td>
+					<img src="client.png" alt="Customer" style="width: 55.1px;border-radius: 50%;">
+				</td>
+				<td>
+					<p style=" font-family: 'Source Sans Pro', sans-serif;font-size: 17px;font-weight: 600;font-style: normal;font-stretch: normal;line-height: 1.2;letter-spacing: 0.7px;text-align: left;color: #686868;">Delivered by <span style="color: #2a8c37;">Manik Badsha</span></p>
+				</td>
+			</tr>
+		</table> -->
+	</section>
+	    <!-- filter: invert(100%); -->
+	<!-- <section style="background-color: #000000;padding-bottom: 30px;">
+		<table style="width: 100%;padding-top: 30px;padding-left: 30px;">
+			<tr>
+				<td>
+					<img src="eatzilla_logo.png" alt="Eatzilla Logo" style="width: 170px;filter: invert(100%);">
+				</td>
+				<td>
+					<span style="background-color: white;border-radius: 50%;padding: 11px 10px 10px 13px;">
+						<i class="fa fa-instagram" aria-hidden="true" style="font-size: 16px;"></i>
+					</span>
+					<span style=" background-color: white; border-radius: 50%; padding: 11px 10px 10px 13px; margin-left: 8px;">
+						<i class="fa fa-linkedin" aria-hidden="true"></i>
+					</span>
+					<span style=" background-color: white; border-radius: 50%; padding: 11px 10px 10px 13px; margin-left: 8px;">
+						<i class="fa fa-facebook" aria-hidden="true"></i>
+					</span>
+					<span style=" background-color: white; border-radius: 50%; padding: 11px 10px 10px 13px; margin-left: 8px;">
+						<i class="fa fa-youtube-play" aria-hidden="true"></i>
+					</span>
+				</td>
+			</tr>
+		</table>
+		<div style="border: 1px solid #79636370;width: 690px;margin-left: 35px;margin-top: 16px;"></div>
+		<table style="width: 100%;padding-top: 30px;padding-left: 30px;">
+			<tr>
+				<td style="font-family: 'Source Sans Pro', sans-serif;font-size: 14px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.77;letter-spacing: 0.6px;text-align: left;color: #ffffff;">FAQ</td>
+				<td style="font-family: 'Source Sans Pro', sans-serif;font-size: 14px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.2;letter-spacing: 0.6px;text-align: left;color: #b2b2b2;">EATZILLA</td>
+			</tr>
+			<tr>
+				<td style="font-family: 'Source Sans Pro', sans-serif;font-size: 14px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.77;letter-spacing: 0.6px;text-align: left;color: #ffffff;">Forgot Password</td>
+				<td style="font-family: 'Source Sans Pro', sans-serif;font-size: 14px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.2;letter-spacing: 0.6px;text-align: left;color: #b2b2b2;">980 Post Oak Blvd,</td>
+			</tr>
+			<tr>
+				<td style="font-family: 'Source Sans Pro', sans-serif;font-size: 14px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.77;letter-spacing: 0.6px;text-align: left;color: #ffffff;">Privacy</td>
+				<td style="font-family: 'Source Sans Pro', sans-serif;font-size: 14px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.2;letter-spacing: 0.6px;text-align: left;color: #b2b2b2;">Houston, Texas, 77056.</td>
+			</tr>
+			<tr>
+				<td style="font-family: 'Source Sans Pro', sans-serif;font-size: 14px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.77;letter-spacing: 0.6px;text-align: left;color: #ffffff;">Terms</td>
+				<td></td>
+			</tr>
+		</table>
+	</section>
+ -->
+ </td>
+    <!-- <td width="33%" align="center" valign="top" style="font-family:Arial, Helvetica, sans-serif; font-size:2px; color:#ffffff;">.</td> -->
+  </tr>
+</table>
+</body>
+</html>
