@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="pizza, delivery food, fast food, sushi, take away, chinese, italian food">
+    <meta name="description" content="">
+    <meta name="author" content="Ansonika">
+    <title>food</title>
+    <!-- BASE CSS -->
+    <link href="css/base.css" rel="stylesheet">
+     
+</head>
+
+<body>
+
+    <div id="preloader">
+        <div class="sk-spinner sk-spinner-wave" id="status">
+            <div class="sk-rect1"></div>
+            <div class="sk-rect2"></div>
+            <div class="sk-rect3"></div>
+            <div class="sk-rect4"></div>
+            <div class="sk-rect5"></div>
+        </div>
+    </div><!-- End Preload -->
+    
+   
+	<!-- End Header =============================================== -->
+    
+    <!-- SubHeader =============================================== -->
+    <section>
+   
+        <div class="col-md-12" >
+           <div class="modal-popup col-md-6 col-md-offset-3" style="margin-top:115px;">
+            <h3><B>LOGIN</B></h3>
+           <form action="#" class="popup-form" id="myLogin">
+                    <div class="login_icon"><i class="icon_lock_alt"></i></div>
+                    <input type="text" class="form-control form-white" placeholder="Username">
+                    <input type="Password" class="form-control form-white" placeholder="Password">
+                    <div class="text-left">
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-submit">Submit</button>
+                </form>
+                </div>
+        </div><!-- End sub_content -->
+    
+   
+   
+    </section><!-- End Header video -->
+    <!-- End SubHeader ============================================ -->
+<!-- COMMON SCRIPTS -->
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/common_scripts_min.js"></script>
+<script src="js/functions.js"></script>
+<script src="assets/validate.js"></script>
+
+<!-- SPECIFIC SCRIPTS -->
+<script src="js/video_header.js"></script>
+<script>
+$(document).ready(function() {
+	'use strict';
+   	  HeaderVideo.init({
+      container: $('.header-video'),
+      header: $('.header-video--media'),
+      videoTrigger: $("#video-trigger"),
+      autoPlayVideo: true
+    });    
+
+});
+</script>
+
+</body>
+
+<!-- Mirrored from www.ansonika.com/quickfood/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 22 Aug 2018 13:44:46 GMT -->
+</html>
